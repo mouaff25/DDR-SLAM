@@ -280,6 +280,16 @@
 
             <!-- KeyPublisher plugin-->
             <plugin filename="KeyPublisher" name="Key Publisher"/>
+          <plugin filename="ImageDisplay" name="Image Display">
+            <ignition-gui>
+              <property key="state" type="string">floating</property>
+            </ignition-gui>
+          </plugin>
+          <plugin filename="ImageDisplay" name="Image Display">
+            <ignition-gui>
+              <property key="state" type="string">floating</property>
+            </ignition-gui>
+          </plugin>
 
         </gui>
 

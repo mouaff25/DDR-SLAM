@@ -74,8 +74,12 @@ def generate_launch_description():
         shell=True
     )
 
+
     node_parameter_bridge_args = ['/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
-                                '/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan']
+                                '/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
+                                '/world/empty_ppp/model/ppp_robot/link/base_link/sensor/camera/image@sensor_msgs/msg/Image[ignition.msgs.Image',
+                                '/world/empty_ppp/model/ppp_robot/link/base_link/sensor/camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo']
+
     node_parameter_bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
