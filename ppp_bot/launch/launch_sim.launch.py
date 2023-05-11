@@ -77,7 +77,7 @@ def generate_launch_description():
     node_parameter_bridge_args = ['/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
                                 '/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan']
     node_parameter_bridge = Node(
-        package='ros_ign_bridge',
+        package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=node_parameter_bridge_args,
         output='screen'
