@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-find_package(rclcpp REQUIRED)
+# find_package(rclcpp REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -24,16 +24,6 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-add_executable(ignition_launcher src/ignition_launcher.cpp)
-ament_target_dependencies(ignition_launcher rclcpp)
-
-add_executable(urdf_spawner src/urdf_spawner.cpp)
-ament_target_dependencies(urdf_spawner rclcpp)
-
-install(TARGETS
-  ignition_launcher
-  urdf_spawner
-  DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files.
 install(DIRECTORY
