@@ -1,5 +1,3 @@
-Sure, here's a possible template for your Github README file:
-
 # DDR-SLAM: Simultaneous Localization and Mapping of Differential Drive Robots
 
 DDR-SLAM is a ROS2-based project that implements Simultaneous Localization and Mapping (SLAM) for differential drive robots. The project uses Gazebo Fortress as a simulation environment to test the SLAM algorithm.
@@ -44,7 +42,13 @@ DDR-SLAM is licensed under the MIT License. See the [LICENSE](LICENSE) file for 
 
 ## Contact
 
-For any questions or feedback, please contact the author:
+For any questions or feedback, please contact the authors:
 
 Mouafak Dakhlaoui
 mouaffak9@gmail.com
+
+Mohamed Yassine Nefzi
+ynyassine7@gmail.com
+
+Jawhar Djebbi
+jawhar.djebbi@insat.ucar.tn
