@@ -24,6 +24,12 @@ def generate_launch_description():
 
     package_name='ppp_bot'
 
+    env = {
+        'IGN_GAZEBO_SYSTEM_PLUGIN_PATH': ':'.join([
+            os.environ.get('IGN_GAZEBO_SYSTEM_PLUGIN_PATH', default=''),
+            os.environ.get('LD_LIBRARY_PATH', default='')]
+        )}
+
     # Check if we're told to use sim time
 
     # Process the URDF file
@@ -55,6 +61,7 @@ def generate_launch_description():
     ignition_launcher = ExecuteProcess(
         cmd=[['ign gazebo ',
             ignition_launcher_params['world_file']]],
+        additional_env=env,
         shell=True
     )
 
