@@ -9,6 +9,8 @@
 
   <depend>ros_ign_gazebo</depend>
   <depend>ros_gz_bridge</depend>
+  <depend>xterm</depend>
+
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
