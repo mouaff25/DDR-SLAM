@@ -80,10 +80,10 @@ def parameter_bridge(context: LaunchContext, world_name):
 
     args = [
             '/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
-            f'/world/{world_name_str}/model/ppp_robot/link/base_link/sensor/camera/image@sensor_msgs/msg/Image[ignition.msgs.Image',
-            f'/world/{world_name_str}/model/ppp_robot/link/base_link/sensor/camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
-            f'/world/{world_name_str}/model/ppp_robot/link/base_link/sensor/depth_camera/image@sensor_msgs/msg/Image[ignition.msgs.Image',
-            f'/world/{world_name_str}/model/ppp_robot/link/base_link/sensor/depth_camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
+            f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/camera/image@sensor_msgs/msg/Image[ignition.msgs.Image',
+            f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
+            f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/depth_camera/image@sensor_msgs/msg/Image[ignition.msgs.Image',
+            f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/depth_camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
             '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock']
 
     node = Node(
@@ -121,6 +121,8 @@ def generate_launch_description():
     pkg_path = os.path.join(get_package_share_directory('ppp_bot'))
     models_dir = os.path.join(pkg_path, 'models')
     xacro_file = os.path.join(pkg_path, 'description', 'robot.urdf.xacro')
+    slam_config_file = os.path.join(pkg_path, 'config', 'mapper_params_online_async.yaml')
+
     urdf_file = os.path.join(pkg_path, 'description', 'robot.urdf')
     robot_description_config = xacro.process_file(xacro_file)
     with open(urdf_file, 'w') as f:
@@ -151,22 +153,32 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         name='lidar_static_transform_publisher',
-        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'lidar_frame', '--child-frame-id', 'ppp_robot/base_link/gpu_lidar']
+        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'lidar_frame', '--child-frame-id', 'ppp_bot/base_link/gpu_lidar']
     )
 
     camera_broadcaster = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         name='camera_static_transform_publisher',
-        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'camera_link', '--child-frame-id', 'ppp_robot/base_link/camera']
+        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'camera_link', '--child-frame-id', 'ppp_bot/base_link/camera']
     )
 
     depth_camera_broadcaster = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         name='depth_camera_static_transform_publisher',
-        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'depth_camera_link', '--child-frame-id', 'ppp_robot/base_link/depth_camera']
+        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'depth_camera_link', '--child-frame-id', 'ppp_bot/base_link/depth_camera']
     )
+
+    slam_launcher = IncludeLaunchDescription(
+                        PythonLaunchDescriptionSource(
+                            [os.path.join(get_package_share_directory('slam_toolbox'),
+                                        'launch', 'online_async_launch.py')]),
+                        launch_arguments={
+                            'params_file': slam_config_file,
+                            'use_sim_time': 'true'
+                        }.items()
+                    )
 
     # Launch!
     return LaunchDescription([
@@ -187,5 +199,6 @@ def generate_launch_description():
         depth_camera_broadcaster,
 
 
-        node_teleop
+        node_teleop,
+        slam_launcher
     ])
