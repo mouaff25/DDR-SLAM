@@ -7,6 +7,9 @@
   <maintainer email="mouaffak9@gmail.com">mouafak</maintainer>
   <license>MIT</license>
 
+  <depend>ros_ign_gazebo</depend>
+  <depend>ros_gz_bridge</depend>
+
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <test_depend>ament_lint_auto</test_depend>
