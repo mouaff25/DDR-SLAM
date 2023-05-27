@@ -27,7 +27,7 @@ endif()
 
 # Install launch files.
 install(DIRECTORY
-  description launch worlds config
+  description launch worlds config models
   DESTINATION share/${PROJECT_NAME}/
 )
 
