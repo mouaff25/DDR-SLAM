@@ -7,10 +7,12 @@
   <maintainer email="mouaffak9@gmail.com">mouafak</maintainer>
   <license>MIT</license>
 
-  <depend>ros_ign_gazebo</depend>
+  <depend>ros_gz_sim</depend>
   <depend>ros_gz_bridge</depend>
   <depend>xterm</depend>
   <depend>slam_toolbox</depend>
+  <depend>rviz2</depend>
+
 
 
 

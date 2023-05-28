@@ -34,7 +34,7 @@ To launch the DDR-SLAM algorithm in the Gazebo Fortress environment, you can use
 
 ```
 source ~/ros2_workspace/install/local_setup.bash
-ros2 launch ppp_bot launch_sim.launch.py
+ros2 launch ppp_bot legacy_launch_sim.launch.py
 ```
 
 The launch file will start Gazebo Fortress with a differential drive robot and launch the DDR-SLAM algorithm. You can then move the robot around in the environment and observe the SLAM output in RViz.
