@@ -7,7 +7,8 @@ from launch import LaunchDescription, LaunchContext
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, LogInfo, ExecuteProcess, EmitEvent, OpaqueFunction, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.event_handlers import OnProcessStart, OnExecutionComplete, OnProcessExit
-from launch.substitutions import EnvironmentVariable, LaunchConfiguration, TextSubstitution
+from launch.substitutions import EnvironmentVariable, LaunchConfiguration, TextSubstitution, PythonExpression
+from launch.conditions import IfCondition
 from launch.events import Shutdown
 
 from launch_ros.actions import Node
@@ -82,14 +83,15 @@ def parameter_bridge(context: LaunchContext, world_name):
             '/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
             f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/camera/image@sensor_msgs/msg/Image[ignition.msgs.Image',
             f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
-            f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/depth_camera/image@sensor_msgs/msg/Image[ignition.msgs.Image',
-            f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/depth_camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
-            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock']
+            # f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/depth_camera/image@sensor_msgs/msg/Image[ignition.msgs.Image',
+            # f'/world/{world_name_str}/model/ppp_bot/link/base_link/sensor/depth_camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
+            f'/world/{world_name_str}/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock']
 
     node = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=args,
+        remappings=[(f'/world/{world_name_str}/clock', '/clock')],
         output='screen'
     )
 
@@ -109,7 +111,7 @@ def generate_launch_description():
     # Launch Arguments
     world_name_launch_arg = DeclareLaunchArgument(
         'world_name',
-        default_value='empty'
+        default_value='cones'
     )
 
     
@@ -122,6 +124,8 @@ def generate_launch_description():
     models_dir = os.path.join(pkg_path, 'models')
     xacro_file = os.path.join(pkg_path, 'description', 'robot.urdf.xacro')
     slam_config_file = os.path.join(pkg_path, 'config', 'mapper_params_online_async.yaml')
+    rviz_config_file = os.path.join(pkg_path, 'config', 'default.rviz')
+
 
     urdf_file = os.path.join(pkg_path, 'description', 'robot.urdf')
     robot_description_config = xacro.process_file(xacro_file)
@@ -163,12 +167,12 @@ def generate_launch_description():
         arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'camera_link', '--child-frame-id', 'ppp_bot/base_link/camera']
     )
 
-    depth_camera_broadcaster = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='depth_camera_static_transform_publisher',
-        arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'depth_camera_link', '--child-frame-id', 'ppp_bot/base_link/depth_camera']
-    )
+    # depth_camera_broadcaster = Node(
+    #     package='tf2_ros',
+    #     executable='static_transform_publisher',
+    #     name='depth_camera_static_transform_publisher',
+    #     arguments = ['--x', '0', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'depth_camera_link', '--child-frame-id', 'ppp_bot/base_link/depth_camera']
+    # )
 
     slam_launcher = IncludeLaunchDescription(
                         PythonLaunchDescriptionSource(
@@ -180,11 +184,23 @@ def generate_launch_description():
                         }.items()
                     )
 
+    rviz_node = Node(
+            package='rviz2',
+            namespace='',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d' + rviz_config_file],
+            parameters=[{'use_sim_time': True}]
+        )
+
     # Launch!
     return LaunchDescription([
         # Launch Arguments
         world_name_launch_arg,
         SetEnvironmentVariable('IGN_GAZEBO_RESOURCE_PATH', models_dir),
+        SetEnvironmentVariable('GTK_PATH', ''),
+        rviz_node,
+
 
         OpaqueFunction(function=launch_ign, args=[world_name]),
         
@@ -196,7 +212,7 @@ def generate_launch_description():
         # tf2 nodes
         lidar_broadcaster,
         camera_broadcaster,
-        depth_camera_broadcaster,
+        # depth_camera_broadcaster,
 
 
         node_teleop,

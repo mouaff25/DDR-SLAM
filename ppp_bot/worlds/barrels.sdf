@@ -1,5 +1,5 @@
 <sdf version='1.9'>
-  <world name='cones'>
+  <world name='barrels'>
     <physics name='1ms' type='ignored'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
@@ -228,13 +228,13 @@
           <property type='string' key='state'>docked_collapsed</property>
         </ignition-gui>
       </plugin>
-      <!-- <plugin name='Key Publisher' filename='KeyPublisher'/> -->
+      <!-- <plugin name='Key Publisher' filename='KeyPublisher'/>
       <plugin name='Image Display' filename='ImageDisplay'>
         <ignition-gui>
           <property key='state' type='string'>floating</property>
         </ignition-gui>
       </plugin>
-      <!-- <plugin name='Image Display' filename='ImageDisplay'>
+      <plugin name='Image Display' filename='ImageDisplay'>
         <ignition-gui>
           <property key='state' type='string'>floating</property>
         </ignition-gui>
@@ -299,83 +299,83 @@
     </model>
 
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel</name>
       <pose>-0.120946 3.49807 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_0</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_0</name>
       <pose>-0.842062 -3.05334 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_1</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_1</name>
       <pose>-3.5074 2.97787 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_2</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_2</name>
       <pose>2.81956 3.34812 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_3</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_3</name>
       <pose>1.59959 -7.15869 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_4</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_4</name>
       <pose>-3.43405 -5.08354 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_5</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_5</name>
       <pose>-7.09113 0.015561 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_6</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_6</name>
       <pose>7.06766 -4.58948 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_7</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_7</name>
       <pose>5.33902 1.33074 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_8</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_8</name>
       <pose>-6.64631 6.57939 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_9</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_9</name>
       <pose>-7.00113 -5.3952 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_10</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_10</name>
       <pose>6.8161 6.94823 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_11</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_11</name>
       <pose>6.33156 -8.25695 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_12</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_12</name>
       <pose>-2.21481 7.20551 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_13</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_13</name>
       <pose>-3.18097 -8.23632 0 0 -0 0</pose>
     </include>
     <include>
-      <uri>model://construction_cone</uri>
-      <name>Construction Cone_14</name>
+      <uri>model://construction_barrel</uri>
+      <name>Construction Barrel_14</name>
       <pose>-8.4468 -7.82491 0 0 -0 0</pose>
     </include>
     <light name='sun' type='directional'>
