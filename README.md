@@ -30,20 +30,28 @@ colcon build
 
 ## Usage
 
-To launch the DDR-SLAM algorithm in the Gazebo Fortress environment, you can use the provided launch file:
+To launch the DDR-SLAM simulation in the Gazebo Fortress environment, you can use the provided launch file:
 
 ```
 source ~/ros2_workspace/install/local_setup.bash
-ros2 launch ppp_bot legacy_launch_sim.launch.py
+ros2 launch ppp_bot launch_sim.launch.py
 ```
 
-The launch file will start Gazebo Fortress with a differential drive robot and launch the DDR-SLAM algorithm. You can then move the robot around in the environment and observe the SLAM output in RViz.
+The launch file will start Gazebo Fortress with a differential drive robot. You can then move the robot around in the environment and observe the SLAM output in RViz 2.
+
+You can also launch the navigation node by opening another terminal and using the navigation.launch.py launch file:
+
+```
+source ~/ros2_workspace/install/local_setup.bash
+ros2 launch ppp_bot navigation.launch.py use_sim_time:=true
+```
 
 ## Results
 
 Here are some sample results of the DDR-SLAM algorithm running in the Gazebo Fortress environment:
 
-![SLAM output in RViz](images/slam_output.png)
+![Gazebo Ignition](images/software/ignition.png)
+![SLAM output in RViz](images/software/rviz2.png)
 
 ## Acknowledgements
 

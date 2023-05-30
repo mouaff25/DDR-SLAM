@@ -229,11 +229,11 @@
         </ignition-gui>
       </plugin>
       <!-- <plugin name='Key Publisher' filename='KeyPublisher'/> -->
-      <plugin name='Image Display' filename='ImageDisplay'>
+      <!-- <plugin name='Image Display' filename='ImageDisplay'>
         <ignition-gui>
           <property key='state' type='string'>floating</property>
         </ignition-gui>
-      </plugin>
+      </plugin> -->
       <!-- <plugin name='Image Display' filename='ImageDisplay'>
         <ignition-gui>
           <property key='state' type='string'>floating</property>
