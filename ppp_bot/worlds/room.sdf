@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.8">
-    <world name="empty">
+    <world name="room">
         <physics name="1ms" type="ignored">
             <max_step_size>0.001</max_step_size>
             <real_time_factor>1.0</real_time_factor>
@@ -174,7 +174,7 @@
           <real_time>true</real_time>
           <real_time_factor>true</real_time_factor>
           <iterations>true</iterations>
-          </plugin>
+          </plugin>Untitled
 
           <plugin
             filename="VisualizeLidar"
@@ -332,7 +332,10 @@
                 </visual>
             </link>
         </model>
-
+    <include>
+      <uri>model://room</uri>
+      <name>Room</name>
+    </include>
 
     </world>
 </sdf>

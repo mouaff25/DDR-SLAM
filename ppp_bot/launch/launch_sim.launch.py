@@ -8,7 +8,7 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, Regi
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.event_handlers import OnProcessStart, OnExecutionComplete, OnProcessExit
 from launch.substitutions import EnvironmentVariable, LaunchConfiguration, TextSubstitution, PythonExpression
-from launch.conditions import IfCondition
+from launch.conditions import IfCondition, UnlessCondition
 from launch.events import Shutdown
 
 from launch_ros.actions import Node
@@ -18,12 +18,30 @@ import xacro
 package_name = 'ppp_bot'
 
 
+def launch_localization(context: LaunchContext, world_name):
+    world_name_str = context.perform_substitution(world_name)
+    pkg_path = os.path.join(get_package_share_directory('ppp_bot'))
+    map_path = os.path.join(pkg_path, 'maps', f'{world_name_str}.yaml')
+    localization_launcher = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            os.path.join(pkg_path, 'launch', 'localization.launch.py')
+        ]),
+        launch_arguments={
+            'use_sim_time': 'true',
+            'map': map_path
+        }.items(),
+        condition=IfCondition(LaunchConfiguration('localization'))
+    )
+    return [localization_launcher]
+
+
 def generate_launch_description():
     # Launch Configuration
     world_name = LaunchConfiguration('world_name')
     use_rviz = LaunchConfiguration('use_rviz')
     use_teleop = LaunchConfiguration('use_teleop')
     use_joystick = LaunchConfiguration('use_joystick')
+    localization = LaunchConfiguration('localization')
 
 
     # Launch Arguments
@@ -41,6 +59,10 @@ def generate_launch_description():
     )
     use_joystick_launch_arg = DeclareLaunchArgument(
         'use_joystick',
+        default_value='False'
+    )
+    localization_launch_arg = DeclareLaunchArgument(
+        'localization',
         default_value='False'
     )
 
@@ -69,8 +91,11 @@ def generate_launch_description():
                         launch_arguments={
                             'params_file': slam_config_file,
                             'use_sim_time': 'true'
-                        }.items()
+                        }.items(),
+                        condition=UnlessCondition(localization)
                     )
+
+    
 
     rviz_node = Node(
             condition=IfCondition(use_rviz),
@@ -89,11 +114,11 @@ def generate_launch_description():
             remappings=[('/cmd_vel_out', '/diff_drive_base_controller/cmd_vel_unstamped')]
         )
 
-    navigation_launcher = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [os.path.join(pkg_path,
-                              'launch', 'navigation.launch.py')]),
-            launch_arguments=[('use_sim_time', 'true')])
+    # navigation_launcher = IncludeLaunchDescription(
+    #         PythonLaunchDescriptionSource(
+    #             [os.path.join(pkg_path,
+    #                           'launch', 'navigation.launch.py')]),
+    #         launch_arguments=[('use_sim_time', 'true')])
 
     delayed_rviz_nav = TimerAction(period=10.0, actions=[
         rviz_node,
@@ -132,6 +157,7 @@ def generate_launch_description():
         use_rviz_launch_arg,
         use_teleop_launch_arg,
         use_joystick_launch_arg,
+        localization_launch_arg,
         SetEnvironmentVariable('IGN_GAZEBO_RESOURCE_PATH', models_dir),
         SetEnvironmentVariable('GTK_PATH', ''),
         
@@ -140,5 +166,6 @@ def generate_launch_description():
         joystic_teleop,
         slam_launcher,
         twist_mux_node,
-        delayed_rviz_nav
+        delayed_rviz_nav,
+        OpaqueFunction(function=launch_localization, args=[world_name]),
     ])
