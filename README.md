@@ -99,7 +99,7 @@ Mohamed Yassine Nefzi ynyassine7@gmail.com
 
 ## Acknowledgements
 
-This project was inspired by the [Building a mobile robot](https://www.youtube.com/watch?v=OWeLUSzxMsw&list=PLunhqkrRNRhYAffV8JDiFOatQXuU-NnxT&pp=iAQB) youtube playlilst by [Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/featured).
+This project was inspired by the [Building a mobile robot](https://www.youtube.com/watch?v=OWeLUSzxMsw&list=PLunhqkrRNRhYAffV8JDiFOatQXuU-NnxT&pp=iAQB) youtube playlist by [Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/featured).
 
 I would also like to thank my teammates Mohamed Yassine Nefzi and Jawher Djebbi for their help and contribution to the project.
 
