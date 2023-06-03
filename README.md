@@ -91,7 +91,7 @@ Some steps have already been taken by making an initial design of our differenti
 
 | | |
 |:-------------------------:|:-------------------------:|
-|<img width="1604" alt="Front view of the robot" src="images/robot_design1.jpg">  Front View |  <img width="1604" alt="Interior view of the robot" src="images/robot_design2.jpg"> Interior view |
+|<img width="1604" alt="Front view of the robot" src="images/robot_design1.jpg">  Front View |  <img width="1604" alt="Interior view of the robot" src="images/robot_design2.jpg"> Interior View |
 
 For more information regarding the robot design, please contact:
 
@@ -99,7 +99,7 @@ Mohamed Yassine Nefzi ynyassine7@gmail.com
 
 ## Acknowledgements
 
-This project was inspired by the [Building a mobile robot](https://www.youtube.com/watch?v=OWeLUSzxMsw&list=PLunhqkrRNRhYAffV8JDiFOatQXuU-NnxT&pp=iAQB) youtube playlilst by [Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/featured). Thanks to the ROS2 and Gazebo communities for their contributions to these projects.
+This project was inspired by the [Building a mobile robot](https://www.youtube.com/watch?v=OWeLUSzxMsw&list=PLunhqkrRNRhYAffV8JDiFOatQXuU-NnxT&pp=iAQB) youtube playlilst by [Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/featured).
 
 I would also like to thank my teammates Mohamed Yassine Nefzi and Jawher Djebbi for their help and contribution to the project.
 
