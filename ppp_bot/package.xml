@@ -12,6 +12,14 @@
   <depend>xterm</depend>
   <depend>slam_toolbox</depend>
   <depend>rviz2</depend>
+  <depend>twist_mux</depend>
+  <depend>navigation2</depend>
+  <depend>xacro</depend>
+
+
+
+
+
 
 
 
