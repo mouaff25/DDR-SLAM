@@ -55,10 +55,10 @@ ros2 launch ppp_bot launch_sim.launch.py
 ```
 
 You can also specify the launch parameter world_name by choosing one of these four worlds:
-![cones](images/cones_world.png)
-![room](images/room_world.png)
-![room_with_cones](images/room_with_cones_world.png)
-![maze](images/maze_world.png)
+| | |
+|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="Cones World" src="images/cones_world.png">  cones |  <img width="1604" alt="Room World" src="images/room_world.png"> room |
+|<img width="1604" alt="Room World (with cones)" src="images/room_with_cones_world.png"> room_with_cones |  <img width="1604" alt="Maze World" src="images/maze_world.png"> maze |
 
 
 
@@ -76,8 +76,9 @@ ros2 launch ppp_bot navigation.launch.py use_sim_time:=true
 
 Here are some sample results of DDR-SLAM running in the Gazebo Fortress environment:
 
-![Gazebo Ignition](images/ignition.png)
-![SLAM output in RViz](images/rviz2.png)
+| | |
+|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="Gazebo Ignition" src="images/ignition.png">  Gazebo Ignition |  <img width="1604" alt="RViz 2" src="images/rviz2.png"> RViz 2 |
 
 ## Future Improvements
 
@@ -87,14 +88,19 @@ Future plans include:
 3. Implementing the algorithms on a robot and testing them in the real world.
 
 Some steps have already been taken by making an initial design of our differential drive robot:
-![Robot Design](images/robot_design.jpg)
+
+| | |
+|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="Front view of the robot" src="images/robot_design1.jpg">  Front View |  <img width="1604" alt="Interior view of the robot" src="images/robot_design2.jpg"> Interior view |
 
 For more information regarding the robot design, please contact:
+
 Mohamed Yassine Nefzi ynyassine7@gmail.com
 
 ## Acknowledgements
 
 This project was inspired by the [Building a mobile robot](https://www.youtube.com/watch?v=OWeLUSzxMsw&list=PLunhqkrRNRhYAffV8JDiFOatQXuU-NnxT&pp=iAQB) youtube playlilst by [Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/featured). Thanks to the ROS2 and Gazebo communities for their contributions to these projects.
+
 I would also like to thank my teammates Mohamed Yassine Nefzi and Jawher Djebbi for their help and contribution to the project.
 
 ## License
